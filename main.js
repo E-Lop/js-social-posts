@@ -25,6 +25,10 @@ Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del
 
 // ------------------------------------
 
+// variabile che contiene il container di tutti i post
+const postsContainer = document.querySelector('.posts-list');
+console.log('container', postsContainer);
+
 // variabile che contiene ID progressivo
 let progID = 0;
 
@@ -33,7 +37,52 @@ const postsArray = {
   author: 'Phil Mangione',
   profilePic: 'https://unsplash.it/300/300?image=15',
   date: '06/25/2021',
-  postText: 'Lorem Ipsum Dolor',
+  postText:
+    'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
   image: 'https://unsplash.it/600/300?image=171',
   likesAmount: 80,
 };
+
+generatePost(postsArray);
+
+// ------------------------------------
+// FUNCTIONS
+// ------------------------------------
+
+function generatePost(postsArray) {
+  const postToDraw = `
+    <div class="post">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <img class="profile-pic" src="${postsArray.profilePic}" alt=${postsArray.author}>                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${postsArray.author}</div>
+                        <div class="post-meta__time">${postsArray.date}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${postsArray.postText}</div>
+            <div class="post__image">
+                <img src="${postsArray.image}" alt="">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${postsArray.likesAmount}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+    `;
+
+  // concatenazione in HTML
+  postsContainer.innerHTML += postToDraw;
+}
