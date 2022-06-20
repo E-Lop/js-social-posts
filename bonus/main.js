@@ -122,7 +122,7 @@ function generatePost(thisPost) {
 
   // se manca immagine di profilo usare iniziali
   if (thisPost.profilePic === null) {
-    profileOrInitials = initials;
+    profileOrInitials = `<div class="profile-pic-default">${initials}</div>`;
   }
 
   const postToDraw = `
