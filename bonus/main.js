@@ -107,11 +107,17 @@ function generatePost(thisPost) {
   let profileOrInitials = `<img class="profile-pic" src="${thisPost.profilePic}" alt=${thisPost.author}>`;
 
   // estrazione iniziale nome e cognome
+  // suddivisione stringa tramite spazio in nome e cognome
   let initialsArray = thisPost.author.split(' ');
+  // estrazione cognome come elemento indice 1
   let thisSurname = initialsArray[1];
+  // estrazione nome come elemento indice 0
   let thisName = initialsArray[0];
+  // suddivisione nome in singole lettere
   let thisNameInitial = thisName.split('');
+  // suddivisione cognome in singole lettere
   let thisSurnameInitial = thisSurname.split('');
+  // estrazione iniziali come elemento indice 0 di nome e cognome
   let initials = `${thisNameInitial[0]}${thisSurnameInitial[0]}`;
 
   // se manca immagine di profilo usare iniziali
