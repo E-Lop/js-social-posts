@@ -104,11 +104,17 @@ for (let j = 0; j < allLikeBtns.length; j++) {
 
 // funzione che genera un post a partire dai dati contenuti nell'array in argomento
 function generatePost(thisPost) {
-  let profileOrInitials =
-    '<img class="profile-pic" src="${thisPost.profilePic}" alt=${thisPost.author}>';
-  let initialsArray = thisPost.author.split(' ');
-  const initials = initialsArray[0];
+  let profileOrInitials = `<img class="profile-pic" src="${thisPost.profilePic}" alt=${thisPost.author}>`;
 
+  // estrazione iniziale nome e cognome
+  let initialsArray = thisPost.author.split(' ');
+  let thisSurname = initialsArray[1];
+  let thisName = initialsArray[0];
+  let thisNameInitial = thisName.split('');
+  let thisSurnameInitial = thisSurname.split('');
+  let initials = `${thisNameInitial[0]}${thisSurnameInitial[0]}`;
+
+  // se manca immagine di profilo usare iniziali
   if (thisPost.profilePic === null) {
     profileOrInitials = initials;
   }
