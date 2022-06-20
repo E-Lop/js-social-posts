@@ -26,17 +26,20 @@ BONUS
 // creo funzione per stampare un singolo post
 // gestione tasto Mi Piace
 
+// per le iniziali creare variabile = author.split("") quindi usare indice della stringa per ottenere singole lettere
+
 // ------------------------------------
 
 // variabile che contiene il container di tutti i post
 const postsContainer = document.querySelector('.posts-list');
 
+// array che contiene tutti i post
 const postsArray = [
   {
     id: 1,
     author: 'Phil Mangione',
     profilePic: 'https://unsplash.it/300/300?image=15',
-    date: '06/25/2021',
+    date: '06-25-2021',
     postText:
       'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
     image: 'https://unsplash.it/600/300?image=171',
@@ -46,15 +49,24 @@ const postsArray = [
     id: 2,
     author: 'Sofia Perlari',
     profilePic: 'https://unsplash.it/300/300?image=16',
-    date: '09/03/2021',
+    date: '09-03-2021',
     postText:
       'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-    image: 'https://unsplash.it/600/300?image=171',
+    image: 'https://unsplash.it/600/300?image=172',
     likesAmount: 120,
+  },
+  {
+    id: 3,
+    author: 'Ermenegildo Vega',
+    profilePic: null,
+    date: '10-23-2021',
+    postText:
+      'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+    image: 'https://unsplash.it/600/300?image=173',
+    likesAmount: 1320,
   },
 ];
 
-let idtest = postsArray;
 // per ciascun elemento dell'array appendo un post al container
 for (let i = 0; i < postsArray.length; i++) {
   const thisPost = postsArray[i];
@@ -78,12 +90,10 @@ for (let j = 0; j < allLikeBtns.length; j++) {
       thisLikeButton.classList.add('like-button--liked');
       const relatedCounter = allLikeCounters[j];
       relatedCounter.innerHTML++;
-      console.log('this', thisLikeButton.classList);
     } else {
       thisLikeButton.classList.remove('like-button--liked');
       const relatedCounter = allLikeCounters[j];
       relatedCounter.innerHTML--;
-      console.log('this', thisLikeButton.classList);
     }
   });
 }
@@ -94,12 +104,21 @@ for (let j = 0; j < allLikeBtns.length; j++) {
 
 // funzione che genera un post a partire dai dati contenuti nell'array in argomento
 function generatePost(thisPost) {
+  let profileOrInitials =
+    '<img class="profile-pic" src="${thisPost.profilePic}" alt=${thisPost.author}>';
+  let initialsArray = thisPost.author.split(' ');
+  const initials = initialsArray[0];
+
+  if (thisPost.profilePic === null) {
+    profileOrInitials = initials;
+  }
+
   const postToDraw = `
     <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${thisPost.profilePic}" alt=${thisPost.author}>                    
+                        ${profileOrInitials}                    
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${thisPost.author}</div>
