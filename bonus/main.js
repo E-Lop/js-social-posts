@@ -74,7 +74,7 @@ for (let i = 0; i < postsArray.length; i++) {
 }
 
 // variabile per tutti i bottoni 'Mi Piace'
-const allLikeBtns = document.querySelectorAll('.like-button__label');
+const allLikeBtns = document.querySelectorAll('.js-like-button');
 // variabile per tutti i contatori di like
 const allLikeCounters = document.querySelectorAll('.js-likes-counter');
 
